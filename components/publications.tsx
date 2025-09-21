@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 import { Card, CardContent } from "@/components/ui/card";
 
 export default function Publications() {
@@ -7,6 +11,59 @@ export default function Publications() {
     { id: 3, title: "HIGH SCHOOL TEACHER MATHEMATICS", price: "₹1180.00", image: "/book_03.png" },
     { id: 4, title: "HIGH SCHOOL TEACHER MATHEMATICS", price: "₹580.00", image: "/book_01.png" },
   ];
+
+  const gridRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          const isMobile = window.matchMedia("(max-width: 767px)").matches;
+
+          if (isMobile) {
+            gsap.fromTo(
+              ".pub-card",
+              {
+                opacity: 0,
+                x: (i) => (i % 2 === 0 ? -50 : 50),
+              },
+              {
+                opacity: 1,
+                x: 0,
+                duration: 0.8,
+                stagger: 0.15,
+                ease: "power3.out",
+              }
+            );
+          } else {
+            gsap.fromTo(
+              ".pub-card",
+              {
+                opacity: 0,
+                y: 50,
+              },
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                stagger: 0.15,
+                ease: "power3.out",
+              }
+            );
+          }
+
+          observer.disconnect(); 
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (gridRef.current) observer.observe(gridRef.current);
+
+    return () => {
+      if (gridRef.current) observer.unobserve(gridRef.current);
+    };
+  }, []);
 
   return (
     <section className="md:py-16 py-10 bg-blue-50">
@@ -24,11 +81,14 @@ export default function Publications() {
         </div>
 
         {/* Publications Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 lg:gap-10">
+        <div
+          ref={gridRef}
+          className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 lg:gap-10"
+        >
           {publications.map((book) => (
             <Card
               key={book.id}
-              className="bg-white hover:shadow-2xl shadow-lg transition-shadow rounded-xl pt-6 sm:pt-10 cursor-pointer"
+              className="pub-card bg-white hover:shadow-2xl shadow-lg transition-shadow rounded-xl pt-6 sm:pt-10 cursor-pointer opacity-0"
             >
               <CardContent className="pb-4 sm:pb-6 text-center">
                 <div className="mb-4 sm:mb-6">
@@ -43,7 +103,9 @@ export default function Publications() {
                 <h3 className="font-semibold text-sm sm:text-base mb-1 sm:mb-2 text-gray-700 leading-tight">
                   {book.title}
                 </h3>
-                <p className="text-base sm:text-lg font-bold text-gray-900">{book.price}</p>
+                <p className="text-base sm:text-lg font-bold text-gray-900">
+                  {book.price}
+                </p>
               </CardContent>
             </Card>
           ))}

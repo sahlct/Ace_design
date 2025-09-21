@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Card, CardContent } from "@/components/ui/card";
+import { gsap } from "gsap";
 
 export default function Courses() {
   const [activeTab, setActiveTab] = useState("offline");
+  const gridRef = useRef<HTMLDivElement | null>(null);
 
   const courses = [
     {
@@ -57,6 +59,36 @@ export default function Courses() {
       iconBg: "bg-indigo-200",
     },
   ];
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          gsap.fromTo(
+            ".course-card",
+            { opacity: 0, y: 50 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              stagger: 0.15,
+              ease: "power3.out",
+            }
+          );
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    if (gridRef.current) {
+      observer.observe(gridRef.current);
+    }
+
+    return () => {
+      if (gridRef.current) observer.unobserve(gridRef.current);
+    };
+  }, []);
 
   return (
     <section
@@ -111,27 +143,30 @@ export default function Courses() {
         </div>
 
         {/* Course Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div
+          ref={gridRef}
+          className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
+        >
           {courses.map((course) => (
             <Card
               key={course.id}
-              className="bg-gray-50/80 border-0 rounded-4xl hover:shadow-lg transition-shadow cursor-pointer z-10"
+              className="course-card opacity-0 bg-gray-50/80 border-0 rounded-2xl hover:shadow-lg transition-shadow cursor-pointer z-10"
             >
-              <CardContent className="p-6 px-8 flex flex-col items-start justify-between gap-6 sm:gap-12">
+              <CardContent className="p-4 sm:p-6 flex flex-col items-start justify-between gap-4 sm:gap-6">
                 <div
-                  className={`w-16 h-16 ${course.iconBg} rounded-full flex items-center justify-center mb-4`}
+                  className={`w-12 h-12 sm:w-16 sm:h-16 ${course.iconBg} rounded-full flex items-center justify-center mb-2 sm:mb-4`}
                 >
                   <img
                     src={course.src}
                     alt={course.title}
-                    className="w-10 h-10 sm:w-12 sm:h-12 object-contain"
+                    className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
                   />
                 </div>
                 <div className="text-start">
-                  <h3 className="text-xl font-bold mb-2 text-gray-900">
+                  <h3 className="text-lg sm:text-xl font-bold mb-1 sm:mb-2 text-gray-900">
                     {course.title}
                   </h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                     {course.subtitle}
                   </p>
                 </div>
