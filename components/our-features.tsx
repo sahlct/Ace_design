@@ -15,7 +15,7 @@ export default function OurFeatures() {
     "Model Exams",
     "Basic maths Classes",
     "Syllabus focused Classes",
-  ]
+  ];
 
   const onlineFeatures = [
     "Study Materials",
@@ -25,10 +25,10 @@ export default function OurFeatures() {
     "Topic Exams",
     "Model Exams",
     "Video Classes",
-  ]
+  ];
 
   return (
-    <section className="py-16 relative">
+    <section className="md:py-16 py-10 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Main Heading with line */}
         <div className="relative mb-16 flex justify-center">
@@ -38,7 +38,7 @@ export default function OurFeatures() {
           <img
             src="/line_02.png"
             alt="underline"
-            className="absolute left-1/2 -translate-x-1/2 -bottom-3 w-32 md:w-40"
+            className="absolute left-1/2 -translate-x-1/2 -bottom-3 w-28 sm:w-32 md:w-40"
           />
         </div>
 
@@ -58,19 +58,19 @@ export default function OurFeatures() {
             }}
           ></div>
 
-          <div className="space-y-16 relative z-10">
+          <div className="md:space-y-16 space-y-10 relative z-10">
             {/* Offline Course Features */}
             <div>
-              <h3 className="text-2xl font-bold mb-8 bg-gradient-to-r from-[#1F67A5] to-[#29b3ee] bg-clip-text text-transparent">
+              <h3 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 bg-gradient-to-r from-[#1F67A5] to-[#29b3ee] bg-clip-text text-transparent">
                 Offline Course
               </h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4">
                 {offlineFeatures.map((feature, index) => (
                   <div
                     key={index}
-                    className="bg-white rounded-lg p-4 text-center hover:bg-blue-50 transition-colors cursor-pointer shadow-md"
+                    className="bg-white rounded-lg p-3 sm:p-4 text-center hover:bg-blue-50 transition-colors cursor-pointer shadow-md"
                   >
-                    <span className="text-sm font-medium text-gray-700">
+                    <span className="text-xs sm:text-sm font-medium text-gray-700">
                       {feature}
                     </span>
                   </div>
@@ -80,16 +80,16 @@ export default function OurFeatures() {
 
             {/* Online Course Features */}
             <div>
-              <h3 className="text-2xl font-bold mb-8 bg-gradient-to-r from-[#1F67A5] to-[#29b3ee] bg-clip-text text-transparent">
+              <h3 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 bg-gradient-to-r from-[#1F67A5] to-[#29b3ee] bg-clip-text text-transparent">
                 Online Course
               </h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4">
                 {onlineFeatures.map((feature, index) => (
                   <div
                     key={index}
-                    className="bg-white rounded-lg p-4 text-center hover:bg-blue-50 transition-colors cursor-pointer shadow-md"
+                    className="bg-white rounded-lg p-3 sm:p-4 text-center hover:bg-blue-50 transition-colors cursor-pointer shadow-md"
                   >
-                    <span className="text-sm font-medium text-gray-700">
+                    <span className="text-xs sm:text-sm font-medium text-gray-700">
                       {feature}
                     </span>
                   </div>
@@ -100,5 +100,5 @@ export default function OurFeatures() {
         </div>
       </div>
     </section>
-  )
+  );
 }

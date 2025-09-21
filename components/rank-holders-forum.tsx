@@ -37,7 +37,7 @@ export default function RankHoldersForum() {
               <img
                 src="/form_globe.png"
                 alt="Educational success illustration"
-                className="max-w-[450px] max-h-[450px]"
+                className="md:max-w-[450px] md:max-h-[450px] max-w-[320px] max-h-[320px]"
               />
             </div>
           </div>

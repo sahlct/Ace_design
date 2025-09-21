@@ -29,7 +29,7 @@ export default function LatestNews() {
   ]
 
   return (
-    <section className="py-16 bg-blue-50">
+    <section className="md:py-16 py-10 bg-blue-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading with underline image */}
         <div className="text-center mb-12">
@@ -45,7 +45,7 @@ export default function LatestNews() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-12">
+        <div className="grid md:grid-cols-3 md:gap-12 gap-8">
           {news.map((item) => (
             <Card
               key={item.id}

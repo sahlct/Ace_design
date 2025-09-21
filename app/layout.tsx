@@ -8,6 +8,11 @@ export const metadata: Metadata = {
   title: 'Ace Institution',
   description: 'Created by SahlCT',
   generator: 'Next Js',
+   icons: {
+    icon: './favicon.ico',
+    shortcut: './logo_full.png',
+    apple: './logo_full.png',
+  },
 }
 
 export default function RootLayout({

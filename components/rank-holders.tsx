@@ -35,7 +35,7 @@ export default function RankHolders() {
   ]
 
   return (
-    <section className="py-16 bg-white">
+    <section className="md:py-16 py-10 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading with line image */}
         <div className="relative mb-12 flex justify-center">

@@ -1,18 +1,64 @@
 import { Button } from "@/components/ui/button";
 
 export default function AboutUs() {
+  const tabs = [
+    {
+      text: "PAC Corner",
+      textColor: "text-green-600",
+      bg: "bg-green-300/10",
+      hover: "hover:bg-green-50",
+    },
+    {
+      text: "Exam & Results",
+      textColor: "text-purple-600",
+      bg: "bg-purple-300/10",
+      hover: "hover:bg-purple-50",
+    },
+    {
+      text: "Exam & Ans Keys",
+      textColor: "text-blue-600",
+      bg: "bg-blue-300/10",
+      hover: "hover:bg-blue-50",
+    },
+    {
+      text: "Rank Holder List",
+      textColor: "text-red-500",
+      bg: "bg-red-300/10",
+      hover: "hover:bg-red-50",
+    },
+    {
+      text: "Online Admission",
+      textColor: "text-teal-600",
+      bg: "bg-teal-300/10",
+      hover: "hover:bg-teal-50",
+    },
+    {
+      text: "Publications",
+      textColor: "text-gray-600",
+      bg: "bg-gray-300/10",
+      hover: "hover:bg-gray-50",
+    },
+    {
+      text: "Event Gallery",
+      textColor: "text-pink-600",
+      bg: "bg-pink-300/10",
+      hover: "hover:bg-pink-50",
+    },
+  ];
+
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="md:py-16 py-10 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Notifications Panel */}
-          <div className="relative w-full h-full z-10">
+        {/* Responsive Layout with reversed order on mobile */}
+        <div className="flex flex-col-reverse lg:flex-row gap-12 items-start">
+          {/* Notifications Panel (left on desktop, bottom on mobile) */}
+          <div className="relative w-full lg:w-1/2 z-10">
             <img
               src="/logo_full.png"
               alt="background_logo"
-              className="absolute right-28 blur-[1px] -bottom-10 z-1"
+              className="absolute right-28 blur-[1px] -bottom-10 z-1 hidden sm:block"
             />
-            <div className="bg-[#ffffffc2] rounded-lg shadow-lg p-6 max-w-md !z-10 relative">
+            <div className="bg-white/80 rounded-lg shadow-lg p-6 max-w-md !z-10 relative mx-auto lg:mx-0">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-lg font-bold text-gray-900">
                   Notifications
@@ -24,10 +70,10 @@ export default function AboutUs() {
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  className="icon icon-tabler icons-tabler-outline icon-tabler-bell cursor-pointer"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="cursor-pointer"
                 >
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
@@ -62,8 +108,8 @@ export default function AboutUs() {
             </div>
           </div>
 
-          {/* About Content */}
-          <div>
+          {/* About Content (right on desktop, top on mobile) */}
+          <div className="w-full lg:w-1/2">
             <h2 className="text-3xl md:text-4xl font-bold mb-2 text-gray-900">
               About Us
             </h2>
@@ -78,19 +124,19 @@ export default function AboutUs() {
             {/* Statistics */}
             <div className="grid grid-cols-3 gap-8 mb-8">
               <div className="text-center">
-                <div className="text-5xl font-bold bg-gradient-to-r from-[#098B9F] to-[#63C2CD] bg-clip-text text-transparent mb-2">
+                <div className="md:text-5xl text-2xl font-bold bg-gradient-to-r from-[#098B9F] to-[#63C2CD] bg-clip-text text-transparent mb-2">
                   20+
                 </div>
                 <div className="text-sm text-gray-600">Years of Excellence</div>
               </div>
               <div className="text-center">
-                <div className="text-5xl font-bold bg-gradient-to-r from-[#00A0E3] to-[#1F67A5] bg-clip-text text-transparent mb-2">
+                <div className="md:text-5xl text-2xl font-bold bg-gradient-to-r from-[#00A0E3] to-[#1F67A5] bg-clip-text text-transparent mb-2">
                   5000+
                 </div>
                 <div className="text-sm text-gray-600">Successful Students</div>
               </div>
               <div className="text-center">
-                <div className="text-5xl font-bold bg-gradient-to-r from-[#63C2CD] to-[#098B9F] bg-clip-text text-transparent mb-2">
+                <div className="md:text-5xl text-2xl font-bold bg-gradient-to-r from-[#63C2CD] to-[#098B9F] bg-clip-text text-transparent mb-2">
                   100+
                 </div>
                 <div className="text-sm text-gray-600">Expert Faculty</div>
@@ -107,20 +153,13 @@ export default function AboutUs() {
         </div>
 
         {/* Navigation Tabs */}
-        <div className="mt-16">
-          <div className="flex flex-wrap justify-center gap-4">
-            {[
-              { text: "PAC Corner", color: "green-600", hoverColor: "green-50" },
-              { text: "Exam & Results", color: "purple-600", hoverColor: "purple-50" },
-              { text: "Exam & Ans Keys", color: "blue-600", hoverColor: "blue-50" },
-              { text: "Rank Holder List", color: "red-500", hoverColor: "red-50" },
-              { text: "Online Admission", color: "teal-600", hoverColor: "teal-50" },
-              { text: "Publications", color: "gray-600", hoverColor: "gray-50" },
-              { text: "Event Gallery", color: "pink-600", hoverColor: "pink-50" },
-            ].map((tab) => (
+        <div className="md:mt-16 mt-8">
+          <div className="flex gap-4 overflow-x-auto no-scrollbar px-2 py-2 sm:px-0 snap-x">
+            {tabs.map((tab) => (
               <button
                 key={tab.text}
-                className={`px-6 py-2 cursor-pointer text-${tab.color} bg-${tab.color}/10 hover:bg-${tab.hoverColor} rounded-lg shadow-[0_4px_6px_rgba(0,0,0,0.1)] hover:shadow-[0_6px_8px_rgba(0,0,0,0.2)] shadow-${tab.color}`}
+                className={`flex-shrink-0 snap-start px-6 py-2 cursor-pointer rounded-lg shadow-md transition 
+                  ${tab.textColor} ${tab.bg} ${tab.hover}`}
               >
                 {tab.text}
               </button>

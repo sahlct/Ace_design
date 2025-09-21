@@ -136,8 +136,9 @@ export default function Branches() {
   };
 
   return (
-    <section className="py-16 bg-blue-50">
+    <section className="md:py-16 py-10 bg-blue-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Heading */}
         <div className="relative mb-12 flex justify-center">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900">
             Branches
@@ -149,14 +150,16 @@ export default function Branches() {
           />
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-1">
+        {/* Branch List + Info */}
+        <div className="lg:grid lg:grid-cols-3 md:gap-8 gap-5 flex flex-col">
+          {/* Branch List */}
+          <div className="lg:col-span-1 mb-6 lg:mb-0">
             <div className="space-y-2">
               {branches.map((branch) => (
                 <Button
                   key={branch}
                   variant={selectedBranch === branch ? "default" : "outline"}
-                  className={`w-full justify-start font-semibold py-6 ${
+                  className={`w-full justify-start font-semibold py-4 sm:py-6 ${
                     selectedBranch === branch
                       ? "bg-gradient-to-r from-[#1F67A5] to-[#00A0E3] hover:bg-blue-700 text-white"
                       : "text-gray-700 hover:text-blue-600"
@@ -164,7 +167,7 @@ export default function Branches() {
                   onClick={() => setSelectedBranch(branch)}
                 >
                   <MapPin
-                    className={`w-6 h-6 mr-2 ${
+                    className={`w-5 h-5 sm:w-6 sm:h-6 mr-2 ${
                       selectedBranch === branch ? "text-white" : "text-blue-500"
                     }`}
                   />
@@ -174,29 +177,26 @@ export default function Branches() {
             </div>
           </div>
 
+          {/* Branch Info */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-3xl p-6 shadow-lg">
-              <h3 className="text-2xl font-bold mb-3 text-gray-900">
+            <div className="bg-white rounded-3xl p-4 sm:p-6 shadow-lg">
+              <h3 className="text-xl sm:text-2xl font-bold mb-3 text-gray-900">
                 {selectedBranch}
               </h3>
 
-              <p className="text-gray-600 mb-5 leading-relaxed">
+              <p className="text-gray-600 mb-3 sm:mb-5 leading-relaxed text-sm sm:text-base">
                 {branchInfo[selectedBranch]?.description}
               </p>
 
-              <div className="flex items-center mb-3">
-                <Phone className="w-4 h-4 mr-2 text-blue-600" />
-                <span className="text-gray-700">
-                  {branchInfo[selectedBranch]?.phone}
-                </span>
+              <div className="flex items-center mb-3 text-sm sm:text-base">
+                <Phone className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-blue-600" />
+                <span className="text-gray-700">{branchInfo[selectedBranch]?.phone}</span>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-8 gap-5 mb-3 h-14">
+              {/* Branch Images */}
+              <div className="flex gap-3 overflow-x-auto mb-3 h-14">
                 {branchInfo[selectedBranch]?.images.map((image, index) => (
-                  <div
-                    key={index}
-                    className="overflow-hidden rounded-lg h-full"
-                  >
+                  <div key={index} className="flex-shrink-0 w-20 sm:w-24 h-full rounded-lg overflow-hidden">
                     <img
                       src={image}
                       alt={`${selectedBranch} branch ${index + 1}`}
@@ -206,10 +206,11 @@ export default function Branches() {
                 ))}
               </div>
 
+              {/* Map */}
               <iframe
                 src={branchInfo[selectedBranch]?.map}
                 loading="lazy"
-                className="w-full rounded-xl h-60"
+                className="w-full rounded-xl h-48 sm:h-60"
               ></iframe>
             </div>
           </div>
